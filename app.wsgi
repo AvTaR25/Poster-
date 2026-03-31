@@ -1,14 +1,14 @@
-
 import sys
 import logging
 
-# Error logging ke liye
+# Server errors log karne ke liye
 logging.basicConfig(stream=sys.stderr)
 
-# Apne project folder ka exact server path yahan daalein
-# Agar aapka folder /var/www/my_flask_app hai, toh wahi likhein
-sys.path.insert(0, '/var/www/aapka_project_folder')
+# Aapke 'poster' project ka exact server path
+PROJECT_DIR = '/var/www/poster'
 
-# app.py file se 'app' variable ko import karein aur use 'application' ka naam dein 
-# (Apache 'application' naam ka variable hi dhundhta hai)
+if PROJECT_DIR not in sys.path:
+    sys.path.insert(0, PROJECT_DIR)
+
+# app.py se Flask instance ko import karke 'application' naam dena
 from app import app as application
